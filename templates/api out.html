@@ -1,0 +1,69 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+
+<div class="container fluid">
+<div class="col-sm-4 col-lg-3 mb-2 py-3">
+<div class="card p-3">
+  <figure class="p-3 mb-0">
+    <blockquote class="blockquote">
+      
+        <form class='datepicker' action="#" method="POST">
+            
+                {{ form.hidden_tag() }} <br>
+                {{ form.dStart.label }} <br> 
+                {{ form.dStart(class="form-control") }} <br>
+                {{ form.dEnd.label }} <br> 
+                {{ form.dEnd(class="form-control") }} <br>
+                 
+            <input class="btn btn-primary mb-3 form-control" type="submit"></input>
+            
+
+            <div class="container-fluid">
+              <select name="valcodes" method="GET" action="/">
+                  <option value="{{colours[0]}}" selected>{{colours[0]}}</option>
+                  {% for colour in colours %}
+                    <option value="{{colour}}">{{colour}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              
+        </form>
+        
+
+
+    </blockquote>
+  </figure>
+</div>
+
+</div>
+
+{% if resultval %}
+  
+<div class="form-control">
+  <figure class="mb-2 py-3">
+    <blockquote class="blockquote">
+
+      <p>Below the plot of currency {{ resultval[2] }}, dates from {{ resultval[0] }} to {{ resultval[1] }} </p>
+
+      <img src= "data:image/png;base64, {{ mygraph}}" width="800" height="400" onerror="this.onerror=null; this.remove();">
+
+    </blockquote>
+  </figure>
+</div>
+{% else  %}
+
+ Choosen data from this menu will be sent to NBU api and <br> 
+  on the basis of received info a graph will be plotted.
+
+{% endif %}
+</div>
+
+  
+
+
+
+
+{% endblock %}  

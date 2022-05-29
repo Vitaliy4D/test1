@@ -1,0 +1,61 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<form method="post" class="container row g-3 col-auto-fluid">
+
+    <div class="col-sm-4 col-lg-5 mb-1 py-3">
+    <div class="card p-3">
+      <figure class="bd-example">
+        <blockquote class="blockquote">
+                
+             {{ form.hidden_tag() }}
+             <label class="form-group">Enter your name: {{ form.name.label }}</label>
+             {{ form.name(class="form-control", placeholder="Name")}}
+             <br>
+             <label class="form-group"> {{ form.surname.label }}</label> 
+             {{ form.surname(class="form-control", placeholder="Surname")}}
+             <br>
+             <label class="form-group"> {{ form.age.label }}</label> 
+             {{ form.age(class="form-control", placeholder="Age")}}
+             <br>
+             {{ form.submit(class="btn btn-primary mb-3") }}
+             
+             {{ form.delete(class="btn btn-primary mb-3") }}
+              
+        </blockquote>
+      </figure>
+    </div>
+    </div>
+</form>
+
+{% if users %}
+
+<blockquote class="form-control">
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Age</th>
+      </tr>
+    </thead>
+
+  {% for user in users  %}
+
+    <tbody>
+      <tr>
+        <th scope="row">{{user.id}}</th>
+        <td>{{user.name}}</td>
+        <td>{{user.surname}}</td>
+        <td>{{user.age}}</td>
+      </tr>
+    </tbody>
+  
+  {% endfor %}
+  </table>  
+</blockquote>
+{% endif %}
+
+{% endblock %}  

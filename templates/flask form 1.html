@@ -1,0 +1,89 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<p><h3>Training parsing different sites</h3></p>
+
+
+
+<form method="post" class="container row g-3 col-auto-fluid">
+
+  <div class="col-sm-4 col-lg-5 mb-1 py-3">
+  <div class="card p-3">
+    <figure class="p-3 mb-0">
+      <blockquote class="blockquote">
+        
+        <div class="row g-3">
+          {{ form.hidden_tag() }}
+          <div class="col-auto">
+              <label class="form-control">Link to paste: {{ form.link.label }}</label>
+          <div class="form-group">
+              {{ form.link(class="form-control", placeholder="Link to pars")}}
+          </div>
+           <p></p>
+          <div class="form-group">
+            {{ form.submit(class="btn btn-primary mb-3") }}
+          </div>
+      </div>
+      </blockquote>
+    </figure>
+  </div>
+  </div>
+  
+
+
+    <div class="col-sm-4 col-lg-6 mb-1 py-3">
+    <div class="card p-3">
+      <figure class="p-3 mb-0">
+        <blockquote class="blockquote">
+          
+          <div class="row g-3">
+            <div class="col-auto">
+                <label class="form-control">Link to paste: {{ form2.link2.label }}</label>
+                <div class="form-group">
+                    {{ form2.link2(class="form-control", placeholder="Link to pars") }}
+                </div>
+             <p></p>
+            <div class="form-group">
+              {{ form2.submit(class="btn btn-primary mb-3") }}
+            </div>
+          </form>
+        </div>
+        </blockquote>
+      </figure>
+    </div>
+    </div>
+
+
+<div class="container">
+{% if link %}
+
+Paste other link on top <br> <br>
+
+Info from the link you entered: {{ link }} 
+<p></p>
+{% for i in range(output[0]|length)  %}
+
+<div class="container themed-container">News {{ i+1 }} : {{ output[0][i] }} </div>
+
+{% endfor %}
+
+{% elif link2 %}
+
+Info from the link you entered: {{ link2 }} 
+<p></p>
+
+{% for i in range(output[1]|length)  %}
+
+<div class="container themed-container"> {{ i+1 }} : {{ output[1][i] }} </div>
+
+{% endfor %}
+
+{% else %}
+
+Please paste the link above
+
+{% endif %}
+</p>
+</div>
+{% endblock content %}
+
